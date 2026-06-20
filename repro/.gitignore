@@ -1,4 +1,5 @@
 results/log_*.txt
 results/_knowledge_cache.json
+results/*.json
 __pycache__/
 *.pyc
