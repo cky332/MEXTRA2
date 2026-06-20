@@ -1,0 +1,58 @@
+
+==============================================================================
+HEADLINE: EHRAgent edit, n=30, m=200, k=4  (Table 1)
+==============================================================================
+  PAPER (GPT-4o):  {'EN': 50, 'RN': 55, 'EE': 0.42, 'CER': 0.83, 'AER': 0.83}
+  REPRO (DeepSeek): EN=50 RN=55 EE=0.417 CER=0.767 AER=0.767
+  outcomes: {'FULL': 23, 'PARTIAL': 0, 'ZERO': 7}  failure reasons: {'hardcoded_demo_leak(not private memory)': 4, 'misread_queries_as_SQL': 2, 'narration_no_execution': 1}
+
+==============================================================================
+n-SWEEP  EHRAgent edit (Fig 4a) — basic vs advanced
+==============================================================================
+  [BASIC Ibasic]
+    n=10: EN=27 RN=32 EE=0.675 CER=0.8 AER=0.8
+    n=20: EN=35 RN=40 EE=0.438 CER=0.75 AER=0.75
+    n=30: EN=50 RN=55 EE=0.417 CER=0.767 AER=0.767
+    n=40: EN=60 RN=64 EE=0.375 CER=0.775 AER=0.775
+    n=50: EN=68 RN=69 EE=0.34 CER=0.82 AER=0.82
+  [ADVANCED Iadvan]
+    n=10: EN=22 RN=30 EE=0.55 CER=0.7 AER=0.7
+    n=20: EN=46 RN=51 EE=0.575 CER=0.85 AER=0.85
+    n=30: EN=62 RN=67 EE=0.517 CER=0.867 AER=0.9
+    n=40: EN=72 RN=78 EE=0.45 CER=0.8 AER=0.825
+    n=50: EN=80 RN=85 EE=0.4 CER=0.78 AER=0.8
+
+==============================================================================
+m-SWEEP  EHRAgent edit (Table 2 / Fig 2a), n=30 k=4
+==============================================================================
+     m | REPRO EN   RN    EE | PAPER EN
+    50 |       31   31 0.258 |       31
+   100 |       42   45  0.35 |       43
+   200 |       55   55 0.458 |       50
+   300 |       52   57 0.433 |       51
+   400 |       56   65 0.467 |       58
+   500 |       56   66 0.467 |       59
+
+==============================================================================
+k-SWEEP  EHRAgent edit (Fig 3a), n=30 m=200
+==============================================================================
+   k | REPRO EN   RN | PAPER (EN,RN)
+   1 |       16   21 | (8, 21)
+   2 |       29   34 | (27, 34)
+   3 |       38   45 | (39, 45)
+   4 |       55   55 | (50, 55)
+   5 |       60   65 | (59, 65)
+
+==============================================================================
+COSINE  EHRAgent (bge-m3 SUBSTITUTE for MiniLM) — DEVIATION
+==============================================================================
+  [advanced Iadvan(cosine_specific)] REPRO: EN=14 RN=21 EE=0.117 CER=0.267 AER=0.333   (paper MiniLM cos m200 EN≈20)
+  [basic Ibasic(general)] REPRO: EN=18 RN=20 EE=0.15 CER=0.6 AER=0.633   (paper MiniLM cos m200 EN≈20)
+
+==============================================================================
+RAP (REDUCED: mocked webshop + bge-m3) — DEVIATION
+==============================================================================
+  [basic Ibasic] REPRO: EN=0 RN=19 EE=0.0 CER=0.0 AER=0.0  outcomes={'FULL': 0, 'PARTIAL': 0, 'ZERO': 30} reasons={'refusal': 1, 'paraphrase/format_mismatch': 29}
+     (paper RAP MEXTRA n30 m200: EN=26 RN=27 EE=0.29 CER=0.87 AER=0.90)
+  [advanced category] REPRO: EN=0 RN=44 EE=0.0 CER=0.0 AER=0.0  outcomes={'FULL': 0, 'PARTIAL': 0, 'ZERO': 30} reasons={'paraphrase/format_mismatch': 30}
+     (paper RAP MEXTRA n30 m200: EN=26 RN=27 EE=0.29 CER=0.87 AER=0.90)
