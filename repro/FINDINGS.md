@@ -131,14 +131,19 @@ n≥20 时 advanced 确实更强(复现成功)。但失败的"类型"在两者�
 
 论文用 MiniLM,m=200 时 cosine EN≈20。本环境只能用 `bge-m3` 替代:
 
-| 配置 | 复现 EN/RN | 论文(MiniLM) |
+| 配置 | 复现 EN / RN / CER | 论文(MiniLM) |
 |---|---|---|
-| EHRAgent cosine advanced(cosine_specific) | __COSADV__ | EN≈20(m200) |
-| EHRAgent cosine basic(general) | __COSBAS__ | — |
+| EHRAgent cosine basic(general) | **18 / 20 / 0.60** | EN≈20(m200) |
+| EHRAgent cosine advanced(cosine_specific) | **14 / 21 / 0.27** | — |
 
-→ 嵌入模型不同会直接改变**检索到哪些记录**(RN),因此 cosine 行的数值**不可与论文直接对比**,
-属于"原配置复现不了"。论文称"嵌入模型影响很小",但这是在 MiniLM/MPNet/RoBERTa 之间比较得出的;
-换成 bge-m3(1024维、多语)后检索分布明显不同(见数值)。
+→ 两点失败/不稳:
+1. **嵌入模型不可得**:论文用 MiniLM,本环境只能 bge-m3,直接改变检索到哪些记录(RN),数值
+   **不可与论文直接对比**,属"原配置复现不了"。
+2. **"advanced cosine > basic" 假设在替代嵌入下翻转**:论文 Fig 4b 是 advanced>basic;复现里
+   **basic(EN=18)反超 advanced(EN=14)**。cosine_specific 的健康短语在 bge-m3 空间没带来检索
+   多样性增益(RN 20 vs 21 几乎相同),前置短语反而**损害提取可靠性**(CER 0.27 vs 0.60)。
+   即论文该结论对嵌入模型/backbone 敏感,不稳。
+   另:cosine 整体 CER(0.27–0.60)远低于编辑距离(0.77–0.90)——cosine 攻击对 DeepSeek 更不稳。
 
 ---
 
