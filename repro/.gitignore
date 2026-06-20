@@ -1,0 +1,4 @@
+results/log_*.txt
+results/_knowledge_cache.json
+__pycache__/
+*.pyc
