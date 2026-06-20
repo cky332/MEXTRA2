@@ -1,0 +1,89 @@
+{
+ "frameworks_adaptive.json": {
+  "lc_vector_std": {
+   "verbatim": {
+    "EN": 16,
+    "RN": 17,
+    "CER": 0.933,
+    "AER": 0.933,
+    "EE": 0.267
+   },
+   "pii": {
+    "n": 15,
+    "RN": 17,
+    "PII_EN": 17,
+    "PII_CER": 1.0,
+    "PII_AER": 1.0,
+    "PII_EE": 0.283
+   }
+  },
+  "lc_summary_std": {
+   "verbatim": {
+    "EN": 0,
+    "RN": 40,
+    "CER": 0.0,
+    "AER": 0.0,
+    "EE": 0.0
+   },
+   "pii": {
+    "n": 15,
+    "RN": 40,
+    "PII_EN": 40,
+    "PII_CER": 0.2,
+    "PII_AER": 1.0,
+    "PII_EE": 0.667
+   }
+  },
+  "lc_summary_adaptive": {
+   "verbatim": {
+    "EN": 0,
+    "RN": 40,
+    "CER": 0.0,
+    "AER": 0.0,
+    "EE": 0.0
+   },
+   "pii": {
+    "n": 8,
+    "RN": 40,
+    "PII_EN": 20,
+    "PII_CER": 0.0,
+    "PII_AER": 0.875,
+    "PII_EE": 0.625
+   }
+  },
+  "mem0_std": {
+   "verbatim": {
+    "EN": 41,
+    "RN": 45,
+    "CER": 0.6,
+    "AER": 0.6,
+    "EE": 0.683
+   },
+   "pii": {
+    "n": 15,
+    "RN": 45,
+    "PII_EN": 44,
+    "PII_CER": 0.6,
+    "PII_AER": 0.933,
+    "PII_EE": 0.733
+   }
+  },
+  "mem0_adaptive": {
+   "verbatim": {
+    "EN": 20,
+    "RN": 37,
+    "CER": 0.125,
+    "AER": 0.25,
+    "EE": 0.625
+   },
+   "pii": {
+    "n": 8,
+    "RN": 37,
+    "PII_EN": 36,
+    "PII_CER": 0.25,
+    "PII_AER": 1.0,
+    "PII_EE": 1.125
+   }
+  }
+ }
+}
